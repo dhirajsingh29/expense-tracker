@@ -12,12 +12,14 @@ const Expenses = (props) => {
         setFilteredYear(selectedYear);
     };
 
+    const filteredExpense = props.items.filter(expense => expense.date.getFullYear() === Number(filteredYear));
+
     return (
         <div>
             <Card className='expenses'>
                 <ExpensesFilter selectedYear={filteredYear} onYearChange={filterYearHandler} />
                 {/* key prop is required when any component is rendered using map i.e. list*/}
-                {props.items.map((expense) => (
+                {filteredExpense.map((expense) => (
                     <ExpenseItem 
                     // key is an inbuilt props for any custom component or built in HTML components
                     // this is required, else React will manipulate each ExpenseItem component, if new item is added to list
