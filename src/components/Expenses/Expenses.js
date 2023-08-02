@@ -16,26 +16,18 @@ const Expenses = (props) => {
         <div>
             <Card className='expenses'>
                 <ExpensesFilter selectedYear={filteredYear} onYearChange={filterYearHandler} />
-                <ExpenseItem
-                    title={props.items[0].title}
-                    amount={props.items[0].amount}
-                    date={props.items[0].date}
-                />
-                <ExpenseItem
-                    title={props.items[1].title}
-                    amount={props.items[1].amount}
-                    date={props.items[1].date}
-                />
-                <ExpenseItem
-                    title={props.items[2].title}
-                    amount={props.items[2].amount}
-                    date={props.items[2].date}
-                />
-                <ExpenseItem
-                    title={props.items[3].title}
-                    amount={props.items[3].amount}
-                    date={props.items[3].date}
-                />
+                {/* key prop is required when any component is rendered using map i.e. list*/}
+                {props.items.map((expense) => (
+                    <ExpenseItem 
+                    // key is an inbuilt props for any custom component or built in HTML components
+                    // this is required, else React will manipulate each ExpenseItem component, if new item is added to list
+                    // this will have a performance hit and also lead to error if ExpenseItem is a component which has state variable.
+                        key={expense.id}
+                        title={expense.title} 
+                        amount={expense.amount} 
+                        date={expense.date} 
+                    />
+                ))}
             </Card>
         </div>
     )
