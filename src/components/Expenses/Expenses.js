@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card';
 import ExpensesFilter from './ExpensesFilter';
 import './Expenses.css';
+import ExpensesList from './ExpensesList';
 
 const Expenses = (props) => {
 
@@ -18,18 +18,7 @@ const Expenses = (props) => {
         <div>
             <Card className='expenses'>
                 <ExpensesFilter selectedYear={filteredYear} onYearChange={filterYearHandler} />
-                {/* key prop is required when any component is rendered using map i.e. list*/}
-                {filteredExpense.map((expense) => (
-                    <ExpenseItem 
-                    // key is an inbuilt props for any custom component or built in HTML components
-                    // this is required, else React will manipulate each ExpenseItem component, if new item is added to list
-                    // this will have a performance hit and also lead to error if ExpenseItem is a component which has state variable.
-                        key={expense.id}
-                        title={expense.title} 
-                        amount={expense.amount} 
-                        date={expense.date} 
-                    />
-                ))}
+                <ExpensesList items={filteredExpense}/>
             </Card>
         </div>
     )

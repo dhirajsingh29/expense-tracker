@@ -10,13 +10,15 @@ const ExpenseItem = (props) => {
 
         // className is a default attribute for HTML tags and not custom component. 
         // Hence, className used under Card is passed as prop to Card component and used there. 
-        <Card className='expense-item'>
-            <ExpenseDate date={props.date}/>
-            <div className='expense-item__description'>
-                <h2>{props.title}</h2>
-                <div className='expense-item__price'>Rs {props.amount}</div>
-            </div>
-        </Card>
+        <li>
+            <Card className='expense-item'>
+                <ExpenseDate date={props.date} />
+                <div className='expense-item__description'>
+                    <h2>{props.title}</h2>
+                    <div className='expense-item__price'>Rs {props.amount}</div>
+                </div>
+            </Card>
+        </li>
     );
 }
 
